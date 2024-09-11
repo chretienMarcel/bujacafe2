@@ -1,0 +1,39 @@
+{% extends 'shop/base2.html' %}
+{% block content %}
+<div class="container">
+    <div class="row mt-5 pt-5">
+        <div class="col-md-4 offset-md-4">
+            <div class="card-shadow-lg  my-3 ">
+                <div class="card-body">
+                    <h4>LOGIN page</h4>
+                    <hr>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form }}
+                        <input class="btn btn-success btn-block" type="submit" value="Login">
+                    </form>
+                   <h6>you don't have an account yet?</h6> <a class="btn btn-primary" href="{%url 'users-sign-up'%}">signup</a>
+
+                </div>
+            </div>
+           
+        </div>
+  
+    </div>
+    
+</div>
+
+<style>
+    .card-shadow-lg{
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+ 
+}
+
+</style>
+
+{% endblock %}
+
+
+
+
+

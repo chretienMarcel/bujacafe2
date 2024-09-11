@@ -1,0 +1,92 @@
+{% extends "shop/base2.html" %}
+
+{% block content %}
+<div class="image-container">
+  <img src="https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+  <div class="text-overlay">
+    <h2>Découvrez notre délicieuse cuisine</h2>
+    <p>Plongez dans l'univers savoureux de nos plats maison. Commandez votre plat préféré sur ce site, cliquez sur "voir le menu" pour consulter nos plats uniques.</p>
+    <h2 style="color:green">Notre spécialité ?</h2> 
+    <h2 style="color:red">LE CAFÉ</h2>
+    <a class="btn btn-warning" href="{%url 'users-login'%}">voir notre menu <span class="sr-only">(current)</span></a>
+  </div>
+</div>
+<style>
+  .image-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    left:0px;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: auto;
+  }
+
+  .text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    right: 30px;
+    text-align: center;
+  }
+
+  .text-overlay h2 {
+    margin-top: 0;
+    font-size: 24px; /* Taille de police initiale pour les grands écrans */
+  }
+
+  .text-overlay p {
+    font-size: 16px; /* Taille de police initiale pour les grands écrans */
+  }
+
+  .btn {
+    font-size: 14px; /* Taille de police initiale pour les grands écrans */
+  }
+
+  @media (max-width: 992px) { /* Règles pour les écrans moyens */
+    .image-container {
+      max-width: 100%;
+      right: 0;
+    }
+
+    .text-overlay h2 {
+      font-size: 20px;
+    }
+
+    .text-overlay p {
+      font-size: 14px;
+    }
+
+    .btn {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 768px) { /* Règles pour les écrans de smartphones */
+    .image-container {
+      max-width: 100%;
+      right: 0;
+    }
+
+    .text-overlay h2 {
+      font-size: 18px;
+    }
+
+    .text-overlay p {
+      font-size: 12px;
+    }
+
+    .btn {
+      font-size: 10px;
+      padding: 6px 12px;
+    }
+  }
+</style>
+{% endblock %}
