@@ -10,7 +10,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <form method="POST">
+    <form method="POST" id="myForm">
       {% csrf_token %}
       <input type="hidden" id="items" name="items">
       <div class="form-row">
@@ -47,24 +47,32 @@
           <label for="inputZip">Téléphone</label>
           <input name="telephone" id="telephone" type="text" class="form-control" required/>
         </div>
-        <div class="form-group">
-          <label for="commentaire">Commentaire ou suggestion</label>
-          <textarea id="commentaire" name="commentaire" class="form-control" placeholder="Ajoutez un commentaire ou une suggestion" rows="3"></textarea>
-        </div>
       </div>
       <div class="form-group col-md-2">
         <label for="inputZip">Somme totale à payer</label>
         <input name="total" id="total" type="text" readonly class="bg-dark text-warning form-control">
       </div>
-      <button type="submit" class="btn btn-primary">Commander</button>
+
+      <div class="form-group">
+        <label for="commentaire">Commentaire</label>
+        <textarea id="commentaire" name="commentaire" class="form-control" rows="3" placeholder="Ajoutez un commentaire éventuel"></textarea>
+      </div>
+
+  <button type="submit" class="btn btn-primary">Commander</button>
     </form>
+    
   </div>
 </div>
 {% endblock %}
 
 {% block js %}
+
 <script type="text/javascript">
-  let panier = {};
+
+ 
+
+
+ let panier = {};
   let panierSimple = []; // Initialiser le panierSimple
 
   if (localStorage.getItem('panier') !== null) {
@@ -104,8 +112,9 @@
       total += quantite * prix;
       nombre += quantite;
 
+
       let itemString = `<li class="list-group-item d-flex justify-content-between align-items-center">
-                       ${nom}
+                        ${nom}
                         <span class="badge badge-primary badge-pill d-flex align-items-center" style="font-size: 14px;"> 
                           <button class="btn btn-link adjust-quantity text-white" data-item="${key}" data-action="decrease" style="color: white;">-</button> 
                           ${quantite} 
@@ -127,6 +136,8 @@
     $('#item-list').append(itemNombre);
     $('#total').val(total + " FBU");
     $('#items').val(JSON.stringify(panierSimple)); // Enregistrer panierSimple
+    // Stocker le total en FBU dans localStorage
+    localStorage.setItem('totalFBU', total); // Ajoutez cette ligne ici
   }
 
   renderPanier();
@@ -166,8 +177,9 @@
     }
 
     localStorage.setItem('panier', JSON.stringify(panier));
+   
     renderPanier();
     updateTotal();
   });
-</script>
+  </script>
 {% endblock %}

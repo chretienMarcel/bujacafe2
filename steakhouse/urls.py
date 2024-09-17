@@ -10,6 +10,7 @@ urlpatterns=[
     path('menu/', views.menu, name='menu'),
     path('checkout', checkout,name='checkout'),
     path('confirmation', confirmation,name="confirmation"),
+    path('paypal/', views.paypay_view,name="paypal"),
     
    
 ]

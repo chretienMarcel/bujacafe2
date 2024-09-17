@@ -1,0 +1,60 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+      <div class="col-6 mx-auto pt-3">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script src="https://www.paypal.com/sdk/js?client-id=ATAd0LSMeAV7-djW20ef-02OvvCKTV555B3ejHEdSV_C8RwylwXuqS3L4ovSDkoHujwnumGmblbbjEbt&currency=USD"></script>
+
+<script>
+    // Taux de conversion FBU à USD
+    const exchangeRate = 5000; // Remplacez par le bon taux de conversion
+
+    // Récupérer le montant total en FBU depuis localStorage
+    const totalInFBU = parseFloat(localStorage.getItem('totalFBU')); // Récupérer la valeur
+    console.log('Total en FBU récupéré :', totalInFBU); // Vérifiez la valeur
+
+    // Vérifiez si le montant est valide
+    if (isNaN(totalInFBU) || totalInFBU <= 0) {
+        alert('Le montant total est invalide.');
+    } else {
+        // Convertir en USD
+        const totalInUSD = (totalInFBU / exchangeRate).toFixed(2); // Conversion en USD
+        console.log('Total en USD :', totalInUSD); // Vérifiez la valeur convertie
+
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: totalInUSD // Utiliser le montant dynamique en USD
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    const transaction = details.purchase_units[0].payments.captures[0];
+                    if (transaction.status === 'COMPLETED') {
+                        alert('Payment successful! Transaction ID: ' + transaction.id);
+                        console.log('Transaction details:', details);
+                        window.location.href = '{% url "confirmation" %}';
+                    } else {
+                        alert('Payment failed or not completed.');
+                    }
+                });
+            },
+            onError: function(err) {
+                console.error('Payment Error:', err);
+                alert('There was an error processing the payment.');
+            }
+        }).render('#paypal-button-container');
+    }
+</script>
+{% endblock %}
+originalllllllll

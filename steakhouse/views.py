@@ -27,6 +27,8 @@ def accueil_view(request):
 
     # Renvoyer la réponse
     return render(request, 'index.html')
+def paypay_view(request):
+     return render(request, 'shop/paypal.html')
 
 def checkout(request):
      if request.method=="POST":
@@ -41,7 +43,7 @@ def checkout(request):
           commentaire=request.POST.get('commentaire')
           com= Commande(item=items,total=total, nom=nom, email=email, adresse=adresse, ville=ville, pays=pays, telephone=telephone, commentaire=commentaire)
           com.save()
-          return redirect('confirmation')
+          return redirect('paypal')  # Assurez-vous que 'paypal' est le bon nom d'URL
      return render(request, 'shop/checkout.html')
 def confirmation(request):
     commandes = Commande.objects.all().order_by('-date_commande')[:1]
