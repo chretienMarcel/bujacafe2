@@ -2,6 +2,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 from django import forms
+
+from users.models import ProfileModel
 #from .models import ProfileModel
 
 
@@ -34,13 +36,13 @@ class signupform(UserCreationForm):
     class Meta:
         model = User
         fields = ["username","email", "password1", "password2"]
-#class userupdateform(forms.ModelForm):
+class userupdateform(forms.ModelForm):
         class Meta:
             model= User
             fields=['username','email']
-#class ProfileUpdateForm(forms.ModelForm):
-        #class Meta:
-            #model = ProfileModel
-           #fields= ['image'] 
+class ProfileUpdateForm(forms.ModelForm):
+        class Meta:
+            model = ProfileModel
+            fields= ['image'] 
 
    

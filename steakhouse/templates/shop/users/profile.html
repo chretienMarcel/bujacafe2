@@ -1,0 +1,66 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+{% block title %}Mon profil{% endblock %}
+<div class="container">
+    <div class="row mt-5 pt-5">
+        <div class="col-md-6 offset-md-3">
+            <div class="card-shadow-lg my-3">
+                <div class="card-body">
+                    <span class="h4">Profile Page</span>
+                    <span>
+                        <button type="button" class="btn btn-primary float-right btn-sm" data-toggle="modal" data-target="#exampleModal">Edit profile</button>
+                    </span>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="img-thumbnail" src="{{ user.profilemodel.image.url }}" alt="profile-img">
+                        </div>
+                        <div class="col-md-8">
+                            <h4>Nom: {{ user.username }}</h4>
+                            <h4>Email: {{ user.email }}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card-shadow-lg {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.25);
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Profile Infos</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-thumbnail" src="{{ user.profilemodel.image.url }}" alt="">
+                    </div>
+                    <div class="col-md-8">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ u_form }}
+                            {{ p_form }}
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
