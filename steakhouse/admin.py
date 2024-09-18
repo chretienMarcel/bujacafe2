@@ -12,7 +12,7 @@ class AdminProduit(admin.ModelAdmin):
     search_fields=('title',)
     list_editable=("prix",)
 class AdminCommande(admin.ModelAdmin):
-    list_display=("item","nom","email","adresse","ville","pays","telephone","commentaire","total","date_commande")
+    list_display=("item","nom","email","adresse","ville","telephone","commentaire","total","date_commande")
 admin.site.register(Category,AdminCategorie)
 admin.site.register(Produit,AdminProduit)
 admin.site.register(Commande,AdminCommande)

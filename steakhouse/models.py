@@ -33,7 +33,7 @@ class Commande(models.Model):
         email=models.EmailField()
         adresse=models.CharField(max_length=200)
         ville=models.CharField(max_length=200)
-        pays=models.CharField(max_length=200)
+        
         telephone=models.CharField(max_length=300)
         commentaire=models.TextField(default=0)
         date_commande=models.DateTimeField(auto_now=True)

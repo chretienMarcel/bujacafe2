@@ -38,10 +38,10 @@ def checkout(request):
           email=request.POST.get('email')
           adresse=request.POST.get('address')
           ville=request.POST.get('ville')
-          pays=request.POST.get('pays')
+         
           telephone=request.POST.get('telephone')
           commentaire=request.POST.get('commentaire')
-          com= Commande(item=items,total=total, nom=nom, email=email, adresse=adresse, ville=ville, pays=pays, telephone=telephone, commentaire=commentaire)
+          com= Commande(item=items,total=total, nom=nom, email=email, adresse=adresse, ville=ville, telephone=telephone, commentaire=commentaire)
           com.save()
           return redirect('paypal')  # Assurez-vous que 'paypal' est le bon nom d'URL
      return render(request, 'shop/checkout.html')
