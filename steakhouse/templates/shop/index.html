@@ -26,7 +26,8 @@
             <div class="card-shadow-lg  my-3 ">
                 <img src="{{produit.image.url}}" alt="image" class="card-img-top" style="height: 300px; object-fit: cover; ">
                 <div class="card-body">
-                    <div id="aa{{produit.id}}" class="card-title"><strong style="font-family: 'Georgia'">{{ produit.title}}</strong></div>
+                    <div id="aa{{produit.id}}" class="card-title title-georgia">{{ produit.title}}</strong></div>
+                    <div>{{ produit.description}}</div>
                     <div id="prix{{produit.id}}" style="color: black">{{ produit.prix}}<div>FBU</div></div>
                  
                     <button id="{{produit.id}}" class="btn ted btn-success">ajouter</button>
@@ -38,6 +39,10 @@
           box-shadow: 0 0.7rem 1rem rgba(0, 0, 0, 0.5);
          
         }
+        .title-georgia {
+        font-family: 'Georgia', serif;
+        font-weight: bold;
+    }
         </style>
         {% endfor %}
     </div>

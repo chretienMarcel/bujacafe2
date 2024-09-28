@@ -19,7 +19,9 @@
                             <h4>Nom: {{ user.username }}</h4>
                             <h4>Email: {{ user.email }}</h4>
                         </div>
+                        <a href="{% url 'change_password' %}" class="btn btn-primary">Changer le mot de passe</a>
                     </div>
+                    <a href="{% url 'delete_account' %}" class="btn btn-danger">Supprimer mon compte</a>
                 </div>
             </div>
         </div>
@@ -53,11 +55,12 @@
                             {{ u_form }}
                             {{ p_form }}
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">retour</button>
+                                <button type="submit" class="btn btn-primary btn-sm">enregistrer</button>
                             </div>
                         </form>
                     </div>
+                   
                 </div>
             </div>
         </div>

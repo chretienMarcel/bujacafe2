@@ -40,7 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'steakhouse',
     'users',
+    'crispy_forms',
+    'crispy_bootstrap5',  # ou 'crispy_bootstrap4'
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'  # ou 'bootstrap4'
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -106,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr-fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Bujumbura'
 
 USE_I18N = True
 
@@ -119,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 LOGIN_REDIRECT_URL='menu'
+LOGIN_URL='users-login'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
@@ -129,3 +136,7 @@ STATIC_ROOT= (BASE_DIR / 'asset')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'  # ou 'bootstrap5' selon votre version de Bootstrap
+
+
+

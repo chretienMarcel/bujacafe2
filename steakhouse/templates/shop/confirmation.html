@@ -25,11 +25,10 @@
           <p><strong>Produit :</strong> {{ commande.item|safe }}</p>
           <p><strong>Nom :</strong> {{ commande.nom }}</p>
           <p><strong>Email :</strong> {{ commande.email }}</p>
-          <p><strong>Adresse :</strong> {{ commande.adresse }}</p>
-          <p><strong>Ville :</strong> {{ commande.ville }}</p>
-          <p><strong>Pays :</strong> {{ commande.pays }}</p>
+          
+        
           <p><strong>Téléphone :</strong> {{ commande.telephone }}</p>
-          <p><strong>Total :</strong> <span class="total">{{ commande.total }} FBU</span></p>
+          <p><strong>Total :</strong> <span class="total">{{ commande.total }} </span></p>
           <p><strong>Date de commande :</strong> {{ commande.date_commande }}</p>
         </div>
       {% endfor %}

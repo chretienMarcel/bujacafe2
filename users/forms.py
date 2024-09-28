@@ -1,5 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User
+
+from django.contrib.auth.forms import PasswordChangeForm
 from django.utils.translation import gettext_lazy as _
 from django import forms
 
@@ -7,19 +9,31 @@ from users.models import ProfileModel
 #from .models import ProfileModel
 
 
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+
 class signupform(UserCreationForm):
     username = forms.CharField(
         label=_("Username"),
         max_length=150,
-       
     )
-    email= forms.EmailField(
-        label=_("email"),
+    email = forms.EmailField(
+        label=_("Email"),
         max_length=150,
-         help_text=_("type your email adress here:"),
-       
+        help_text=_("Type your email address here:"),
     )
-    
+    first_name = forms.CharField(
+        label=_("First Name"),
+        max_length=30,
+        required=True,
+    )
+    last_name = forms.CharField(
+        label=_("Last Name"),
+        max_length=30,
+        required=True,
+    )
     password1 = forms.CharField(
         label=_("Password"),
         strip=False,
@@ -35,7 +49,9 @@ class signupform(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ["username","email", "password1", "password2"]
+        fields = ('username', 'email', 'first_name', 'last_name', 'password1', 'password2')
+
+    
 class userupdateform(forms.ModelForm):
         class Meta:
             model= User
@@ -44,5 +60,10 @@ class ProfileUpdateForm(forms.ModelForm):
         class Meta:
             model = ProfileModel
             fields= ['image'] 
+class CustomPasswordChangeForm(PasswordChangeForm):
+    class Meta:
+        model = User
+        fields = ('old_password', 'new_password1', 'new_password2')
+
 
    
